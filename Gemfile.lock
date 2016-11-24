@@ -32,7 +32,7 @@ GIT
     high_voltage (3.0.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -176,6 +176,7 @@ GEM
     multi_json (1.12.1)
     multipart-post (2.0.0)
     mustermann (1.0.0.beta2)
+    mysql2 (0.3.21)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -328,6 +329,7 @@ DEPENDENCIES
   mina-multistage (~> 1.0)
   mina-puma (= 0.3.2)
   mina-sidekiq (~> 0.3.1)
+  mysql2 (~> 0.3.18)
   pg
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)

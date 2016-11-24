@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -21,6 +21,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg'
+gem 'mysql2', '~> 0.3.18'
 gem 'figaro'
 gem 'bootstrap-sass'
 gem 'simple_form'
