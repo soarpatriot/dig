@@ -6,9 +6,7 @@ html
     meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
     meta name="renderer" content="webkit"
     meta http-equiv="cleartype" content="on"
-    meta name="HandheldFriendly" content="True"
-    meta name="MobileOptimized" content="320"
-    - if content_for?(:title)
+    meta name="HandheldFriendly" content="True" meta name="MobileOptimized" content="320" - if content_for?(:title)
       = yield(:title)
     - else
       title dig
@@ -19,7 +17,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag "favicon.png"
   body
-    = render 'shared/nav'
     main
       .container
         == yield

@@ -1,0 +1,16 @@
+= simple_form_for(@visitor) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :user_name
+    = f.input :user_code
+    = f.input :station_id
+    = f.input :station_name
+    = f.input :merchant
+    = f.input :ip
+    = f.input :visist_status
+    = f.input :visit_time
+
+  .form-actions
+    = f.button :submit

@@ -3,6 +3,9 @@ Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
 
+  resources :visitors
+  devise_for :users
+  resources :users
   # writer your routes here
 
   mount Sidekiq::Web => '/sidekiq'

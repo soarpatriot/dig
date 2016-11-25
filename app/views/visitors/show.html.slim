@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong User:
+  = @visitor.user_id
+p
+  strong User name:
+  = @visitor.user_name
+p
+  strong User code:
+  = @visitor.user_code
+p
+  strong Station:
+  = @visitor.station_id
+p
+  strong Station name:
+  = @visitor.station_name
+p
+  strong Merchant:
+  = @visitor.merchant
+p
+  strong Ip:
+  = @visitor.ip
+p
+  strong Visist status:
+  = @visitor.visist_status
+p
+  strong Visit time:
+  = @visitor.visit_time
+
+= link_to 'Edit', edit_visitor_path(@visitor)
+'|
+= link_to 'Back', visitors_path

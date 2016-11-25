@@ -1,84 +1,55 @@
-set :stages, %w(production)
-set :default_stage, 'production'
+# config valid only for current version of Capistrano
+lock '3.6.1'
 
-require 'mina/multistage'
-require 'mina/bundler'
-require 'mina/rails'
-require 'mina/git'
-require 'mina/rbenv'
-require 'mina/puma'
-require "mina_sidekiq/tasks"
-require 'mina/logs'
+set :application, 'dig'
+set :repo_url, 'git@github.com:soarpatriot/dig.git'
 
-set :shared_paths, ['config/database.yml', 'config/application.yml', 'log', 'public/uploads']
-set :puma_config, ->{ "#{deploy_to}/#{current_path}/config/puma.rb" }
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-task :environment do
-  invoke :'rbenv:load'
-end
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, '/mysql/www/dig'
 
-task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/shared/tmp/sockets"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/sockets"]
+# Default value for :scm is :git
+# set :scm, :git
 
-  queue! %[mkdir -p "#{deploy_to}/shared/pids"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/pids"]
+# Default value for :format is :airbrussh.
+# set :format, :airbrussh
 
-  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/pids"]
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+# Default value for :pty is false
+# set :pty, true
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/public/uploads"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/public/uploads"]
+# Default value for :linked_files is []
+append :linked_files, 'config/database.yml', 'config/secrets.yml'
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+# Default value for linked_dirs is []
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'vendor/bundle'
 
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/application.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/application.yml'"]
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'"]
-end
+# Default value for keep_releases is 5
+set :keep_releases, 5
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+    end
+  end
+  after :restart, :'puma:restart'    #添加此项重启puma
+  after :publishing, :restart
 
-desc "Deploys the current version to the server."
-task :deploy => :environment do
-  queue  %[echo "-----> Server: #{domain}"]
-  queue  %[echo "-----> Path: #{deploy_to}"]
-  queue  %[echo "-----> Branch: #{branch}"]
-
-  deploy do
-    invoke :'sidekiq:quiet'
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
-
-    to :launch do
-      invoke :'puma:hard_restart'
-      invoke :'sidekiq:restart'
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
     end
   end
 end
 
-desc "Deploys the current version to the server."
-task :first_deploy => :environment do
-  queue  %[echo "-----> Server: #{domain}"]
-  queue  %[echo "-----> Path: #{deploy_to}"]
-  queue  %[echo "-----> Branch: #{branch}"]
 
-  deploy do
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
-    invoke :'deploy:cleanup'
 
-    to :launch do
-      invoke :'rails:db_create'
-    end
-  end
-end
+
+

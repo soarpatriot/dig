@@ -1,11 +1,37 @@
-.container.text-center
-  h1 Hello World
-  hr
-  h3 You are roading on Rails...
-  br
-  br
-  br
-  br
-  p.text-muted From rails-template of 80percent!!
+h1 Listing visitors
 
-  = link_to 'About Page', page_path('about')
+table
+  thead
+    tr
+      th User
+      th User name
+      th User code
+      th Station
+      th Station name
+      th Merchant
+      th Ip
+      th Visist status
+      th Visit time
+      th
+      th
+      th
+
+  tbody
+    - @visitors.each do |visitor|
+      tr
+        td = visitor.user_id
+        td = visitor.user_name
+        td = visitor.user_code
+        td = visitor.station_id
+        td = visitor.station_name
+        td = visitor.merchant
+        td = visitor.ip
+        td = visitor.visist_status
+        td = visitor.visit_time
+        td = link_to 'Show', visitor
+        td = link_to 'Edit', edit_visitor_path(visitor)
+        td = link_to 'Destroy', visitor, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Visitor', new_visitor_path

@@ -1,0 +1,11 @@
+.navbar.navbar-default.navbar-fixed-top[role="navigation"]
+      .container
+        .navbar-header
+          button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+            span.sr-only
+          a.navbar-brand[href="#"]
+            | Dig
+        ul.nav.navbar-nav.navbar-right
+             - if user_signed_in?
+                li
+                  = link_to '退出', destroy_user_session_path, :method => :delete

@@ -1,4 +1,7 @@
 source 'https://ruby.taobao.org'
+
+gem 'simple_form'
+gem 'devise' 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -9,10 +12,16 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
+
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem "capistrano", "~> 3.6"
   gem 'byebug', platform: :mri
 end
 
 group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
