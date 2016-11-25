@@ -4,15 +4,18 @@ set :server_name, "101.95.26.138"
 set :branch, "master"
 set :log_level, :debug
 
-
+set :puma_config, ->{ "#{deploy_to}/#{current_path}/config/puma.rb" }
+#set :ssh_options, {
+#  forward_agent: true,
+#  auth_methods: %w{publickey},
+#  port: 2888
+# }
 
 
 # set :password, ask('Server password', nil)
 # server fetch(:server_name), user: 'deploy', port: 22, password: fetch(:password), roles: %w{web app db}
 
-server fetch(:server_name), user: "deploy", port:2888, roles: %w{web app db}
-
-
+server fetch(:server_name), user: "deploy", port: 2888 ,roles: %w{web app db}
 
 # server-based syntax
 # ======================

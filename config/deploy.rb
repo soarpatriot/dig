@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 set :application, 'dig'
-set :repo_url, 'git@github.com:soarpatriot/dig.git'
+set :repo_url, 'https://github.com/soarpatriot/dig.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -21,7 +21,7 @@ set :deploy_to, '/mysql/www/dig'
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, 'config/database.yml', 'config/secrets.yml'
@@ -31,7 +31,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
+set :puma_conf, "#{shared_path}/config/puma.rb"
 # Default value for keep_releases is 5
 set :keep_releases, 5
 namespace :deploy do

@@ -13,12 +13,12 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
 
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
-  gem "capistrano", "~> 3.6"
   gem 'byebug', platform: :mri
 end
 
 group :development do
+  gem "capistrano", "~> 3.6"
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm'
@@ -29,7 +29,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'pg'
+# gem 'pg'
 gem 'mysql2', '~> 0.3.18'
 gem 'figaro'
 gem 'bootstrap-sass'
