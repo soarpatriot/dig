@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124101143) do
+ActiveRecord::Schema.define(version: 20161128102216) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20161124101143) do
     t.string   "merchant"
     t.string   "ip"
     t.integer  "visist_status"
-    t.date     "visit_time"
+    t.datetime "visit_time"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
