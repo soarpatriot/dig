@@ -4,6 +4,7 @@ lock '3.6.1'
 set :application, 'dig'
 set :repo_url, 'https://github.com/soarpatriot/dig.git'
 
+set :rails_env, 'production'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -41,12 +42,12 @@ namespace :deploy do
     end
   end
   after :restart, :'puma:restart'    #添加此项重启puma
-  after :publishing, :restart
+  #after :publishing, :restart
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-    end
-  end
+  #after :restart, :clear_cache do
+  #  on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #  end
+  #end
 end
 
 

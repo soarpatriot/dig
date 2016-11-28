@@ -1,4 +1,4 @@
-set :stage, :local
+set :stage, :production
 set :server_name, "101.95.26.138"
 
 set :branch, "master"
