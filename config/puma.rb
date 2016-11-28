@@ -1,4 +1,5 @@
 if ENV['RAILS_ENV'] == 'production'
+  environment 'production'
   app_root = '/mysql/www/dig/shared'
   pidfile "#{app_root}/tmp/pids/puma.pid"
   state_path "#{app_root}/tmp/pids/puma.state"
