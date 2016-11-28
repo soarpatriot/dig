@@ -4,7 +4,7 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.all
+    @visitors = Visitor.page params[:page]
   end
 
   # GET /visitors/1

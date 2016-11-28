@@ -1,6 +1,6 @@
 h1 Listing visitors
 
-table
+table.table
   thead
     tr
       th User
@@ -33,5 +33,7 @@ table
         td = link_to 'Destroy', visitor, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
-
+.row
+ .col-md-12.toolbar
+   .pull-right = paginate @visitors, theme: 'twitter-bootstrap-3'
 = link_to 'New Visitor', new_visitor_path

@@ -45,6 +45,7 @@ gem 'redis-namespace'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra', require: false
 gem 'kaminari', github: 'amatsuda/kaminari'
+gem 'bootstrap-kaminari-views'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'mina', '0.3.8', require: false
 gem 'mina-puma', '0.3.2', require: false
