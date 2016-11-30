@@ -1,6 +1,7 @@
 source 'https://gems.ruby-china.org'
 
 gem 'devise' 
+gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -46,11 +47,11 @@ gem 'redis-namespace'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra', require: false
 gem 'rails-i18n', '~> 5.0.0'
-gem 'mina', '0.3.8', require: false
-gem 'mina-puma', '0.3.2', require: false
-gem 'mina-multistage', '~> 1.0', require: false
-gem 'mina-sidekiq', '~> 0.3.1', require: false
-gem 'mina-logs', '>= 0.1.0', require: false
+#gem 'mina', '0.3.8', require: false
+#gem 'mina-puma', '0.3.2', require: false
+#gem 'mina-multistage', '~> 1.0', require: false
+#gem 'mina-sidekiq', '~> 0.3.1', require: false
+#gem 'mina-logs', '>= 0.1.0', require: false
 gem 'lograge'
 group :development do
   gem 'rails_apps_testing'

@@ -26,6 +26,38 @@ class VisitorsController < ApplicationController
   # POST /visitors
   # POST /visitors.json
   def create
+    user = params[:user]
+    ip = params[:ip]
+    log = params[:log] 
+    unless log.nil?
+			log.each do |l| 
+				@visitor = Visitor.new()
+				@visitor.user_name = user[:employeename] 
+				@visitor.user_id = user[:employeeid] 
+				@visitor.cellphone = user[:cellphone] 
+				@visitor.user_code = user[:employeecode] 
+				@visitor.station_id = user[:employeeid] 
+				@visitor.cname = ip[:cname] 
+				@visitor.ip = ip[:cip] 
+				@visitor.city = ip[:city] 
+				@visitor.province = ip[:province] 
+				@visitor.isp = ip[:isp] 
+
+				@visitor.visit_time = Time.at(l[:timestamp])
+				@visitor.save
+			end
+    end
+    unless @visitor.nil?
+      @visitor = Visitor.new()
+    end
+    render json: {"code":1}
+    #respond_to do |format|
+    #  format.json { render :show, status: :created, location: {"code": 1} }
+    #end
+  end
+
+  def cr
+
     @visitor = Visitor.new(visitor_params)
     @visitor.visit_time = Time.at(visitor_params[:visit_time])
     respond_to do |format|
@@ -38,6 +70,7 @@ class VisitorsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /visitors/1
   # PATCH/PUT /visitors/1.json
@@ -80,4 +113,5 @@ class VisitorsController < ApplicationController
     def sanitize_time_params
      #  params[:visit_time] = Time.at(params[:visit_time].to_i)
     end
+
 end
