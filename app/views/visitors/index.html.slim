@@ -29,7 +29,9 @@ table.table
         td = visitor.cname
         td = visitor.isp
         td = visitor.ip
-        td = visitor.visist_status
+        td 
+          span.label.label-danger 
+            | #{visitor.visist_status}
         td = visitor.visit_time
         td = link_to 'Show', visitor
         td = link_to 'Destroy', visitor, data: { confirm: 'Are you sure?' }, method: :delete
