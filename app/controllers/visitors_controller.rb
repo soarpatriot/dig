@@ -7,6 +7,7 @@ class VisitorsController < ApplicationController
   # GET /visitors.json
   def index
     @visitors = Visitor.page params[:page]
+    
   end
 
   # GET /visitors/1
@@ -36,13 +37,14 @@ class VisitorsController < ApplicationController
 				@visitor.user_id = user[:employeeid] 
 				@visitor.cellphone = user[:cellphone] 
 				@visitor.user_code = user[:employeecode] 
+				@visitor.station_name = user[:companyname] 
 				@visitor.station_id = user[:employeeid] 
 				@visitor.cname = ip[:cname] 
 				@visitor.ip = ip[:cip] 
 				@visitor.city = ip[:city] 
 				@visitor.province = ip[:province] 
 				@visitor.isp = ip[:isp] 
-
+        @visitor.visist_status = 0 
 				@visitor.visit_time = Time.at(l[:timestamp])
 				@visitor.save
 			end
@@ -95,6 +97,14 @@ class VisitorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def all
+    Visitor.destroy_all
+    respond_to do |format|
+      format.html { redirect_to visitors_url, notice: 'Visitor was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

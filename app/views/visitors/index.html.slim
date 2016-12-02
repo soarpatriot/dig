@@ -1,5 +1,6 @@
 h1 Listing visitors
-
+p.pull-right 
+  td = link_to 'Destroy All', all_visitors_path, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
 table.table
   thead
     tr
@@ -31,11 +32,9 @@ table.table
         td = visitor.visist_status
         td = visitor.visit_time
         td = link_to 'Show', visitor
-        td = link_to 'Edit', edit_visitor_path(visitor)
         td = link_to 'Destroy', visitor, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 .row
  .col-md-12.toolbar
    .pull-right = paginate @visitors, theme: 'twitter-bootstrap-3'
-= link_to 'New Visitor', new_visitor_path
