@@ -4,16 +4,18 @@ p.pull-right
 table.table
   thead
     tr
-      th User
-      th User name
-      th User code
-      th Station
-      th Station name
-      th Cname
-      th Isp
-      th Ip
-      th Visist status
-      th Visit time
+      th 用户id
+      th 名称
+      th Code
+      th 站点id
+      th 站点名称
+      th 省份
+      th 城市
+      th 网络服务地区
+      th 网络服务商
+      th ip
+      th 访问状态
+      th 访问时间
       th
       th
       th
@@ -26,13 +28,20 @@ table.table
         td = visitor.user_code
         td = visitor.station_id
         td = visitor.station_name
+        td = visitor.province
+        td = visitor.city
         td = visitor.cname
         td = visitor.isp
         td = visitor.ip
         td 
           span.label.label-danger 
-            | #{visitor.visist_status}
-        td = visitor.visit_time
+            - if visitor.visist_status == 'abnormal'
+              | 异常
+            - else 
+              | 正常
+        td 
+          | （#{time_ago_in_words(visitor.visit_time)}）
+          | #{visitor.visit_time.strftime("%Y-%m-%d %H:%M:%S")}
         td = link_to 'Show', visitor
         td = link_to 'Destroy', visitor, data: { confirm: 'Are you sure?' }, method: :delete
 
