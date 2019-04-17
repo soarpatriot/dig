@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 # gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '5.2.2.1'
+gem 'mysql2'
+gem 'jwt'
 gem 'puma', '~> 3.12.1'
 
 group :development do
