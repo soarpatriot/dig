@@ -1,7 +1,7 @@
 set :stage, :production
 set :server_name, "101.95.26.138"
 
-set :branch, "master"
+set :branch, "develop"
 set :log_level, :debug
 
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
@@ -9,7 +9,7 @@ set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
 
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,   "#{shared_path}/tmp/pids/puma.pid"
-set :puma_bind, "unix:///mysql/www/dig/shared/tmp/sockets/puma.sock"      #根据nginx配置链接的sock进行设置，需要唯一
+set :puma_bind, "unix:///#{shared_path}/tmp/sockets/puma.sock"      #根据nginx配置链接的sock进行设置，需要唯一
 set :puma_conf, "#{shared_path}/config/puma.rb"
 set :puma_access_log, "#{shared_path}/log/puma_error.log"
 set :puma_error_log, "#{shared_path}/log/puma_access.log"
@@ -29,7 +29,7 @@ set :puma_preload_app, true
 # set :password, ask('Server password', nil)
 # server fetch(:server_name), user: 'deploy', port: 22, password: fetch(:password), roles: %w{web app db}
 
-server fetch(:server_name), user: "deploy", port: 2888 ,roles: %w{web app db}
+server fetch(:server_name), user: "ubuntu", roles: %w{web app db}
 
 # server-based syntax
 # ======================
