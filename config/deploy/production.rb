@@ -1,5 +1,5 @@
 set :stage, :production
-set :server_name, "101.95.26.138"
+set :server_name, "p.dreamreality.cn"
 
 set :branch, "develop"
 set :log_level, :debug

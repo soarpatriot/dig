@@ -1,8 +1,4 @@
 class VisitorsController < ApplicationController
-  before_action :set_visitor, only: [:show, :edit, :update, :destroy]
-  before_action :sanitize_time_params, only: [:create]
-  skip_before_filter :verify_authenticity_token, :only => :create
-  skip_before_action :authenticate_user!, only: [:create]
   # GET /visitors
   # GET /visitors.json
   def index

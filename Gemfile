@@ -6,7 +6,7 @@ gem 'jwt'
 gem 'puma', '~> 3.12.1'
 
 group :development do
-  gem "capistrano", "~> 3.6"
+  gem "capistrano", "~> 3.11.0"
   gem 'capistrano3-puma'
   # gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rails'
