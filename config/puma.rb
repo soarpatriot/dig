@@ -6,8 +6,8 @@ if ENV['RAILS_ENV'] == 'production'
   bind "unix://#{app_root}/tmp/sockets/puma.sock"
   activate_control_app "unix://#{app_root}/tmp/sockets/pumactl.sock"
   daemonize true
-  workers 2
-  threads 8, 16
+  workers 4
+  threads 16, 32
   preload_app!
 
   on_worker_boot do
